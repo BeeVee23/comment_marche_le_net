@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="fr">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title></title>
+
+		<meta name="description" content="Comment marche l'Internet">
+		<meta name="author" content="Marc Scott, traduit par Ben Vost">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/Bourne.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<a href="http://www.esaa-aquitaine.com" target="_blank"><img style="border: 0;" src="images/logo_bv2.png"></img></a>
+		<a href="https://github.com/MarcScott/How_the_internet_works"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+		<a href="#/contents"><img style="position: absolute; left: 50%; margin-left: -30px; border: 0;" src="images/home.png" width = "60px" alt="Home"></a>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Comment marche</h1>
+					<h1>l'Internet</h1>
+					<h3>Un projet utilisant Scratch</h3>
+					<p>
+						<small>Created by <a href="http://coding2learn.org">Marc Scott</a> / <a href="http://twitter.com/coding2learn">@coding2learn</a> et traduit par Ben Vost pour <a href="http://www.esaa-aquitaine.com/">ESAA Aquitaine</a></small>
+						<small>utilisant <a href="https://github.com/hakimel/reveal.js">reveal.js</a></small>
+					</br><small><a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">How The Internet Works</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.coding2learn.org" property="cc:attributionName" rel="cc:attributionURL">Marc Scott</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.</small>
+					</p>
+				</section>
+
+				<section id="contents">
+					<h2>Contents</h2>
+					<small>
+					<li><a href="#/Introduction">Introduction</a></li>
+					<li><a href="#/The_Internet">L'Internet</a></li>
+					<li><a href="#/The_World_Wide_Web">Le World Wide Web</a></li>
+					<li><a href="#/Web_Browsers">Browsers Web (Navigateurs)</a></li>
+					<li><a href="#/URLs_and_Domain_Names">Les URLs et les Noms de Domaine</a></li>
+					<li><a href="#/DNS">DNS</a></li>
+					<li><a href="#/Introduction_to_Modelling_a_DNS">Mod&eacute;liser un DNS</a></li>
+					<li><a href="#/Building_a_DNS_table">Construire un table DNS</a></li>
+					<li><a href="#/Adding_to_the_DNS_table">Remplir le table DNS</a></li>
+					<li><a href="#/Linear_Search">Recherche lin&eacute;aire</a></li>
+					<li><a href="#/Using_Linear_Search">Utiliser une recherche lin&eacute;aire dans notre table DNS</a></li>
+					<li><a href="#/Linear_Search_Project">Projet de recherche lin&eacute;aire</a></li>
+					<li><a href="#/More_Internet">l'Internet (encore)</a></li>
+					<li><a href="#/Sprites">Les Sprite pour le r&eacute;seau</a></li>
+					<li><a href="#/Packets">Packets (Les Paquets)</a></li>
+					<li><a href="#/Building_the_network">Commencer &agrave; construire le r&eacute;seau</a></li>
+					<li><a href="#/Sending_the_packet">Envoyer le packet</a></li>
+					<li><a href="#/Arriving_at_router">Arrivant au routeur</a></li>
+					<li><a href="#/Building_the_router">Construire le routeur</a></li>
+					<li><a href="#/Forwarding_the_packet">Passer le packet</a></li>
+					<li><a href="#/Receiving_the_packet">Recevoir le packet</a></li>
+					<li><a href="#/Finishing_off">Pour Finir</a></li>
+					<li><a href="#/Extension">Activit&eacute;s suppl&eacute;mentaires</a></li>
+					</small>
+				</section>
+
+				<section id="Introduction">
+					<h2>l'Internet, le World Wide Web,</h2>
+					<h2>Browsers et les Moteurs de recherche</h2>
+					<p>Quel est la diff&eacute;rence ?</p>
+					<p>Essayez de noter et expliquer tes id&eacute;es</p>
+				</section>
+
+				<section id = "The_Internet">
+					<section>
+						<h1>l'Internet</h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>L'Internet</h2>
+						<p>Le plupart des gens ne savent pas ce que c'est l'Internet.<br/>Ce mec ne sait vraiment pas, et il est senateur du gouvernement americain... (VO)</p>
+						<iframe id="slideshare" src="http://www.youtube.com/embed/f99PcP0aFNE?rel=0" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen="true"> </iframe>
+					</video>
+					<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<img src="http://blog.une.edu.au/robbi/files/2009/08/mg20227062200-8_792.jpg" alt="Undersea Fibre" width="60%">
+						<p>Il &eacute;tait quand m&ecirc;me un tout petit peu correcte - l'Internet est un peu comme "Un s&eacute;rie de tubes"</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>C'est quoi l'Internet?</h2>
+						<p>L'Internet est un r&eacute;seau globale, connexe avec des cables en cuivre ou fibre optique, ou sans fils et avec des signaux satellite.</p>
+						<p>Tout seul, l'Internet n'est que beaucoup de mat&eacute;riel tres cher.</p>
+					</section>
+				</section>
+
+				<section id ="The_World_Wide_Web">
+					<section>
+						<h1>Le World Wide Web</h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le World Wide Web</h2>
+						<img src="http://upload.wikimedia.org/wikipedia/commons/8/83/Tim_Berners-Lee-Knight-crop.jpg" height ='200'>
+						<p>Tim Berners-Lee a invent&eacute; le Web.</p>
+						<p>Pour comprendre comment il marche, on va faire une petite exercice.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Construire un p'tit site web</h2>
+						<p>Nous allons construire notre propre site web minuscule. Il ne formerait pas parti du World Wide Web par contre, parce qu'il va &ecirc;tre sur votre ordi et pas accessible en dehors de cela.</p>
+						<p>Premi&egravere chose a faire ? Cr&eacute;er un nouveau dossier sur votre bureau et nom-le <em>mon site web</em>.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Notre Premi&egravere page</h2>
+						<p>Ouvre Bloc notes ou une autre editeur de texte.</p>
+						<p>Copie et colle le suivant dans ton document</p>
+						<pre><code>
+&lt;html&gt;
+&lt;body&gt;
+	&lt;h1&gt;Mon Premi&egravere page Web&lt;/h1&gt;
+	&lt;p&gt;Ceci est mon Premi&egravere page web. J'espere que tu l'aimeras.&lt;/p&gt;
+	&lt;img src="http://imgs.xkcd.com/comics/computer_problems.png"&gt;
+	&lt;a href="secondpage.html"&gt;Lien vers mon deuxi&egrave;me page&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+					</code></pre>
+					<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<p>Enregistrer ton fichier comme <pre><code>firstpage.html</code></pre></p>
+						<p>Le nom est important - assures qu'il est tout en minuscule et que le nom du fichier termine en <pre><code>.html</code></pre> et <em>PAS</em> <pre><code>.txt</code></pre></p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Notre deuxi&egrave;me page</h2>
+						<p>Maintenant on va cr&eacute;er un nouveau fichier texte.</p>
+						<p>Et copie / colle le suivant dans ton fichier</p>
+						<pre><code>
+&lt;html&gt;
+&lt;body&gt;
+	&lt;h1&gt;Mon deuxi&egrave;me page web&lt;/h1&gt;
+	&lt;p&gt;Celui est mon deuxi&egrave;me page web. J'espere que tu l'appr&eacute;cieras autant que le premier.&lt;/p&gt;
+	&lt;img src="http://imgs.xkcd.com/comics/tech_support_cheat_sheet.png"&gt;
+	&lt;a href="firstpage.html"&gt;Lien vers mon premier page&lt;/a&gt;
+	&lt;a href="http://www.google.com"&gt;Lien vers Google&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+					</code></pre>
+					<p>Enregistre ton fichier comme <code>secondpage.html</code></p>
+					<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Tester notre page web</h2>
+						<p>Maintenant nous allons regarder dans le dossier que nous avons cr&eacute;e. Il doit avoir deux icones pour les deux fichiers que t'as cr&eacute;e et ils doivent sembler des icones de browser.</p>
+						<p>Double clique le fichier firstpage.html et il doit ouvrir dans un browser web.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Debugger and r&eacute;diger</h2>
+						<p>Pour ouvrir ton fichier de nouveau dans un &eacute;diteur de texte comme Bloque Notes, clique bouton droit sur le fichier et choisi "Ouvrez avec..." et choisi ton &eacute;diteur de texte.</p>
+						<p>Si tes pages non pas marcher, v&eacute;rifie le code encore une fois, et rassure-toi que tes fichiers sont bien nomm&eacute;.</p>
+						<p>Maintenant, essaie de cr&eacute;er un troisi&egrave;me page et le link&eacute; depuis les autres pages.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Alors c'est quoi le World Wide Web ?</h2>
+						<p>Le web est un tas de documents, comme les deux ou trois que tu viens de cr&eacute;er qui sont tous connect&eacute; et qui sont tous stock&eacute; sur des ordinateurs partout dans le monde. Ces ordinateurs sont appell&eacute; <em>Serveurs Web</em></p>
+						<img src="http://upload.wikimedia.org/wikipedia/commons/9/98/Cern_datacenter.jpg" width=50%></img>
+					</section>
+				</section>
+
+				<section id = "Web_Browsers">
+					<section>
+						<h1>Browsers Web (Navigateurs)</h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>C'est quoi un Browser Web ?</h2>
+						<p>Un browser est un logiciel que t'as install&eacute; sur ton ordi</p>
+						<p>Tu peux nomm&eacute; combien depuis leurs logos ?</p>
+						<img src="http://www.movingweb.co.nz/images/browser_logos.png" height="200">
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Que fait un Browser web ?</h2>
+						<p>Les browsers prennent les langages web (html, javascript, actionscript et plein, plein d'autres) et les afficher dans un forme facile &agrave; lire et interr&eacute;agir avec.</p>
+						<p>Comme exemple, voila un peu de HTML :</p>
+						<pre><code>
+<iframe src="http://player.vimeo.com/video/2619976" width="500" height="385"></iframe>
+						</code></pre>
+						<p>Et voila comment ton browser l'interprete :</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+							<iframe data-autoplay src="http://player.vimeo.com/video/2619976?portrait=0"width="500" height="385"></iframe>
+					</section>
+				</section>
+
+				<section id="URLs_and_Domain_Names">
+					<section>
+						<h1>Les URLs et Noms de Domaine </h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<p>Regarde le bar d'adresse qui est affich&eacute; dans ton browser. Tous ce qui est &eacute;crit l&agrave; est l'URL du page que tu regarde dans le browser.</p>
+						<p>Tous ce qui est &eacute;crit l&agrave; apr&egrave;s le <em>www</em> mais <em>avant</em> le premier / est le nom de domaine du site que tu visite.</p>
+						<p>Tu dois bien connaitre des noms de domaines comme :</p>
+						<pre><code>
+google.com
+facebook.com
+dailymotion.com
+youtube.com
+wikipedia.org
+						</code></pre>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+			
+
+					<section>
+						<h2>C'est quoi un nom de domaine ?</h2>
+						<p>Les noms de domaines sont un peu comme des adresses. Par exemple, notre &eacute;cole est &agrave;</p>
+						<pre><code>
+16 Cours du G&eacute;n&eacute;ral de Gaulle,
+33170 Gradignan
+FRANCE
+						</code></pre>
+						<img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/2010_Official_Downing_Street_pic.jpg" width=40%><!--besoin d'iamge!-->
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<pre><code>
+16 Cours du G&eacute;n&eacute;ral de Gaulle,
+33170 Gradignan
+FRANCE
+						</code></pre>
+						<p>Celui, c'est faciles pour les gens de donner et souvenir. Un autre facon de dire o&ugrave; se trouve l'&eacute;cole serait :</p>
+						<pre><code>
+44&deg;47'13.04", -0&deg;36'14.75"
+						</code></pre>
+						<p>Ceci est difficile pour un &ecirc;tre humain &agrave; souvenir, mais super facile pour un ordi. Essaie de le copier/coller dans <a href="http://maps.google.com">Google Maps</a> et regarde o&ugrave; il te mets.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Les adresses IP</h2>
+						<p>Les noms de Domaine sont comme des adresses, cr&eacute;e pour que les humains peuvent les lire, comprendre et souvenir. In reality a computer's address (that allows other computers on a network or the internet to find it), is made up of numbers.</p>
+						<p>Les ordinateurs utilisent les <code> adresses IP</code> pour envoyer les messages entre eux.</p>
+						<p>L'adresse IP actuel de ton ordi doit &ecirc;tre mis en-dessous :</p>
+						<pre>
+							<script language="JavaScript">
+VIH_BackColor = "#525252";
+VIH_ForeColor = "#F0F0F0";
+VIH_FontPix = "30";
+VIH_DisplayFormat = "You are visiting from:<br>IP Address: %%IP%%";
+VIH_DisplayOnPage = "yes";
+</script>
+<script language="JavaScript" src="http://scripts.hashemian.com/js/visitorIPHOST.js.php"></script>
+					</pre>
+					<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Trouver les adresses IP</h2>
+						<p>Nous avons besoins des noms de domaines car les adresses IP sont trop difficiles pour les humains &agrave; souvenir.</p>
+						<p>Imagine avoir besoin de taper <pre><code>http://74.125.239.151</code></pre> &agrave chaque fois. Essaie-le maintenant...</p>
+						<p>Essaie ceux-ci aussi et noter les domaines correspondant :</p>
+						<pre><code>
+1. http://193.169.66.26 <!--Need more ip addresses that WORK!-->
+2. http://212.99.36.2
+3. http://72.21.210.29
+						</code></pre>
+						<!--<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>-->
+					</section>
+				</section>
+				<section id="DNS">
+					<section>
+						<h1>DNS</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<p>Quand je tape www.google.com dans le bar d'adresses dans mon browser, il envoie un message vers les serveurs de Google demandant le page web.</p>
+						<p>Mon ordi a besoin de connaitre l'adresse IP du serveur de Google. Pour faire &ccedil;a, il contacte un serveur de nom de domaine (DNS en anglais).</p>
+						<p>Ce serveur de nom de domaines est un ordinateur sp&eacute;ciale sur l'Internet qui gardes des tables de noms de domaine et adresses IP correspondant.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>DNS en detaille</h2>
+						<p>Regarde ce clip (en VO) et prends des notes</p>
+						<iframe width="560" height="315" src="http://www.youtube.com/embed/72snZctFFtA?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Mini-projet DNS</h2>
+						<p>Imagine que tu devais expliquer DNS &agrave; quelqu'un qui n'avait aucune id&eacute;e comment &ccedil;a marche.</p>
+						<p>Utilisant n'importe quel logiciel (m&ecirc;me stylo et papier si tu pr&eacute;fere), cr&eacute;e un produit qui t'aidera &agrave; expliquer DNS &agrave; quelqu'un. Tu peux cr&eacute;er une affiche, un pr&eacute;sentation, un dissertation - c'est completement &agrave; ton choix.</p>
+					</section>
+				</section>
+
+				<section id = 'Introduction_to_Modelling_a_DNS'>
+					<section>
+						<h1>Mod&eacute;liser un DNS</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h3>D&eacute;marre Scratch et commence un nouveau projet</h3>
+						<p>Appelle-le "DNS Model"</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Comment expliquer DNS</h2>
+						<p>Un DNS consiste d'un tableur un peu comme ceci :</p>
+						<table class="center">
+							<tr>
+								<td>Domain Name</td>
+								<td>IP Address</td>
+							</tr>
+							<tr>
+								<td>google.com</td>
+								<td>74.125.239.116</td>
+							</tr>
+							<tr>
+								<td>bbc.co.uk</td>
+								<td>212.58.246.90</td>
+							</tr>
+						</table>
+						<small>Un petit note. Tous les explications dans ce pr&eacute;sentation ne sont pas totalement vrai. D'un part c'est un <a href="http://en.wikipedia.org/wiki/Lie-to-children">simplification (VO)</a> pour faire des choses plus facile &agrave; comprendre</small>
+					</section>
+				</section>
+
+				<section id="Building_a_DNS_table">
+					<section>
+						<h1>Construire un</h1>
+						<h1>table DNS</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<p>Nous allons construire un table DNS au d&eacute;but. Ceci va &ecirc;tre constitu&eacute; de deux listes.</p>
+						<p>Cr&eacute;e un nouveau liste qui s'appelle <code>Domain Names</code> and un autre qui s'appelle <code>IP Addresses</code></p>
+						<p>Au liste <code>Domain Names</code> ajout le nom de domaine <em>google.fr</em></p>
+						<p>Au liste <code>IP Addresses</code> ajout l'adresse IP <em>173.194.34.87</em></p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Tu dois avoir cela :</h2>
+						<img src="images/Create_Lists_bv.png" alt="Create Lists"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/0GNtvtiRV8E?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id = "Adding_to_the_DNS_table">
+					<section>
+						<h1>Remplir le table DNS</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Plus de noms de domaines</h2>
+						<p>Nous avons besoin de plus de noms de domaines et adresses IP pour notre table.</p>
+						<p>Va <a href="http://www.hcidata.info/host2ip.cgi">ici</a></p>
+						<p>Utilise ce site pour chercher des noms de domaines connus, comme <code>facebook.com</code> et <code>youtube.com</code>. Ajout-les aux listes.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<p>Tu dois finir avec quelque-chose comme ceci.</p>
+						<p>Essaie au moins d'avoir 10 noms de domaines et leurs adresses IP correspondant.</p>
+						<img src="images/Populated_Lists_bv.png" alt="Populated Lists"></img>
+					</section>
+				</section>
+
+				<section id="Linear_Search">
+					<section>
+						<h1>Recherche lin&eacute;aire</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Algorithmes de recherche</h2>
+						<p>Quand tu tapes un URL dans le bar d'adresse d'un browser web, ton ordinateur consultes le serveur DNS pour connaitre l'adresse IP.</p>
+						<p>Le serveur DNS va chercher le nom de domaine dans ses listes et trouver l'adresse IP qui correspond.</p>
+						<p>Pour cela le serveur a besoin d'un algorithme de recherche.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Recherche lin&eacute;aire</h2>
+						<p>Dans l'image qui suit tu va voir une s&eacute;ance d'identification. Tu dois trouver ce figure :</p>
+						<img src="images/Face.jpg"></img> 
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+
+					</section>
+					<section>
+							<canvas id="myCanvas" width="960" height="600"></canvas>
+							    <script> //Some seriously ugly js here. Come back and fix.
+							    	var canvas = document.getElementById('myCanvas');
+									var context = canvas.getContext('2d');
+									var UsualBkg = new Image();
+									var blank_face = new Image();
+									var image1Vis = true;
+									var image2Vis = true;
+									var image3Vis = true;
+									var image4Vis = true;
+									var image5Vis = true;
+									var faceSize = 100
+									var x;
+									var y;
+								
+
+								    function getMousePos(canvas, evt) 
+								    {
+								    	var rect = canvas.getBoundingClientRect();
+								        return {
+								          x: evt.clientX - rect.left,
+								          y: evt.clientY - rect.top
+								        };
+									}
+
+
+									canvas.addEventListener('mousedown', function(evt) 
+										{
+											var mousePos = getMousePos(canvas, evt);
+
+											if (mousePos.x>100 && mousePos.x<200 && mousePos.y>130 && mousePos.y<230)
+											  	{
+											  		image1Vis = false
+											  	}
+											if (mousePos.x>240 && mousePos.x<340 && mousePos.y>90 && mousePos.y<190)
+											  	{
+											  		image2Vis = false
+											  	}
+											if (mousePos.x>435 && mousePos.x<535 && mousePos.y>75 && mousePos.y<1750)
+											  	{
+											  		image3Vis = false
+											  	}
+											if (mousePos.x>585 && mousePos.x<685 && mousePos.y>90 && mousePos.y<190)
+											  	{
+											  		image4Vis = false
+											  	}
+											if (mousePos.x>760 && mousePos.x<860 && mousePos.y>100 && mousePos.y<200)
+											  	{
+											  		image5Vis = false
+											  	}
+										  	context.drawImage(UsualBkg, 0, 0, 960, 600);
+											if (image1Vis == true) 
+												{
+													context.drawImage(blank_face, 100, 120, 100, 100);
+												}
+											if (image2Vis == true) 
+												{
+													context.drawImage(blank_face, 240, 90, 100, 100);
+												}
+											if (image3Vis == true) 
+												{
+													context.drawImage(blank_face, 435, 75, 100, 100);
+												}
+											if (image4Vis == true) 
+												{
+													context.drawImage(blank_face, 585, 90, 100, 100);
+												}
+											if (image5Vis == true) 
+												{
+													context.drawImage(blank_face, 760, 100, 100, 100);
+												}
+								      	}, false);
+
+
+
+
+							      UsualBkg.onload = function() {
+							        context.drawImage(UsualBkg, 0, 0, 960, 600);
+							        context.drawImage(blank_face, 100, 130, 100, 100);
+							        context.drawImage(blank_face, 240, 90, 100, 100);
+							        context.drawImage(blank_face, 435, 75, 100, 100);
+							        context.drawImage(blank_face, 585, 90, 100, 100);
+							        context.drawImage(blank_face, 760, 100, 100, 100);
+							      };
+							      UsualBkg.src = 'images/The_Usual_suspects.jpg';
+							      blank_face.src = 'images/blank_face.gif';
+							    </script>
+							    <br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Comment tu l'as fait ?</h2>
+						<p>Peut-&ecirc;tre t'as choisi au hasard ? C'est un des methodes pour rechercher.</p>
+						<p>Ou, peut-&ecirc;tre t'as commencer &agrave; un cot&eacute; et continu&eacute; vers l'autre ? C'est comme &ccedil;a qu'un ordinateur accomplierait une recherche.</p>
+						<p>Ce methode de chercher s'appelle une recherche lin&eacute;aire.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Recherche lin&eacute;aire</h2>
+						<p>Imaginons que nous avons un liste de 'choses'</p>
+						<code>[chat,chien,cheval,souris,lapin,perroquet,&eacute;l&eacute;phant]</code>
+						<p>Si nous voulons que notre ordinateur utilise un logiciel pour chercher le position de l'&eacute;l&eacute;ment <code>perroquet</code>, l'ordi va chercher de gauche au droite.</p>
+						<p>Le logiciel va v&eacute;rifier ce qui est &agrave; position 1, est-ce le perroquet ? Sinon, il continue &agrave; position 2, et ainsi de suite.</p>
+					</section>
+				</section>
+
+				<section id = "Using_Linear_Search">
+					<section>
+						<h1>Utiliser une recherche lin&eacute;aire dans notre table DNS</h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Chercher les noms de domaines</h2>
+						<p>Dans notre logiciel Scratch nous avons un liste de noms de domaines, et un liste d'adresses IP.</p>
+						<p>On a besoin de mener une recherche lin&eacute;aire sur la liste de noms de domaines afin de trouver le position d'un nom qu'on donne.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Pour Commencer</h2>
+						<p>Ajouter des variables.</p>
+						<ol>
+							<li>Un qui s'appelle <code>domain</code></li>
+							<li>Un qui s'appelle <code>index</code></li>
+						</ol>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Un algorithme de recherche lineaire</h2>
+						<ul>
+							<li>Quand le script demarre il demande le nom d'un domaine.</li>
+							<ul>
+								<li>Le variable <code>domain</code> est mis en <code>r&eacute;ponse</code>.</li>
+								<li>Le variable <code>index</code> est mis &agrave; 1</li>
+								<li>Dans un boucle qui r&eacute;pete autant de fois qu'il y a entr&eacute;es dans le liste <code>Domain Names</code>.</li>
+								<ul>
+									<li>Si <code>index</code> du liste Domain Name = le variable <code>domain</code></li>
+									<ul>
+										<li>Dit <code>index</code> du liste Adresse IP</li>
+									</ul>
+									<li>Sinon</li>
+									<ul>
+										<li>Incr&eacute;ment le variable <code>index</code> +1</li>
+									</ul>
+								</ul>
+							</ul>
+						</ul>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+quand DrapeauVert cliqu&eacute;
+	demande "Quel domaine cherches-tu ?"
+	mets domain &agrave; r&eacute;ponse
+	mets index &agrave; 1
+	repete (longeur de Domain Names)
+		si (index de Domain Names) = domain
+			dit ("l'adresse IP est", index de IP Addresses)
+		sinon
+			changer index + 1
+		</pre></code>
+		<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Les Blocs</h2>
+						<p>Essaie de r&eacute;f&eacute;rencer le pseudocode afin de bidouiller comment les mettre en place avant de proceder &agrave; la page suivante.</p>
+						<img src="images/linear_search_blocks_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Les blocs part 2</h2>
+						<p>Si t'es coinc&eacute;, voila quelqu'uns des blocs qui sont d&eacute;ja arrang&eacute; pour toi.</p>
+						<p>Essaie de completer le script avant d'aller &agrave; la page suivante.</p>
+						<img src="images/linear_search_blocks2_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le scripte complet</h2>
+						<img src="images/linear_search_script_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Vid&eacute;o</h2>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/n4dgYXwXhlg?rel=0" frameborder="0" allowfullscreen="true"="true"></iframe>
+					</section>
+				</section>
+				<section id="Linear_Search_Project">
+					<section>
+						<h1>Projet de recherche lin&eacute;aire</h1>
+					</section>
+					<section>
+						<h2>Notice</h2>
+						<p>Tu va essayer de cr&eacute;er ton propre logiciel de recherche lin&eacute;aire maintenant.</p>
+						<ol>
+							<li>Cr&eacute;er un logiciel Scratch qui :
+								<ul>
+								<li>Utilise deux listes, un pour stocker un nom d'un sujet (comme Archi d'int&eacute;rieure) un autre avec un note cibl&eacute;</li>
+								<li>Va permettre a l'utilisateur de chercher pour un sujet et donne le note cibl&eacute; pour ce sujet.</li>
+							</ul></li>
+							<li>Utilise le(s) lutin(s) que tu veux.</li>
+							<li>Si t'as le temps essaie de le faire r&eacute;pondre avec "Sujet inconnu" si un sujet qui n'est pas dans le liste est demand&eacute;.</li>
+						</ol>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Recap</h2>
+						<ol>
+							<li>Le noms de domaines sont faciles a lire et souvenir pour les humains.</li>
+							<li>Chaque domaine est li&eacute; &agrave; l'adresse IP que les ordinateurs utilisent pour parler entre eux.</li>
+							<li>Un Serveur de noms de domaines (DNS en anglais) stocke une table de noms de domaines et adresses IP.</li>
+							<li>Quand tu tapes un URL, ton ordi demande au DNS pour l'adresse IP de ce nom de domaine.</li>
+							<li>Une recherche lin&eacute;aire n'est qu'une methode de trouver un &eacute;l&eacute;ment dans un liste.</li>
+						</ol>
+					</section>
+				</section>
+
+				<section id="More_Internet">
+					<section>
+						<h1>l'Internet (encore)</h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Mod&eacute;liser un r&eacute;seau</h2>
+						<p>L'Internet est un tres grand r&eacute;seau, mais apr&egrave;s tout, ce n'est qu'un r&eacute;seau comme les autres.</p>
+						<p>Tu va maintenant mod&eacute;liser un r&eacute;seau dans Scratch qui va montrer comment les r&eacute;seaux passent des messages.</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Pour d&eacute;marrer</h2>
+						<p>Lancer Scratch et sauvegarder ton projet sous le nom "Virtual Network"</h2>
+					</section>
+				</section>
+
+				<section id="Sprites">
+					<section>
+						<h1>Les Lutins</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Les Lutins</h2>
+						<p>Nous avons besoin de trois choses pour d&eacute;buter.</p>
+						<ol>
+							<li>Un ordinateur</li>
+							<li>Un routeur</li>
+							<li>Un paquet</li>
+						</ol>
+						<br>
+						<br>
+						<p>Voila ceux que j'ai utilis&eacute; mais bien s&ucirc;r tu peux s&eacute;lectionner, importer ou dessiner les tiens.</p>
+						<img src="images/Sprites.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<p>Nous allons nommer le lutin pour l'ordi avec un adresse IP.</p>
+						<p>Dans le pluparts des r&eacute;seaux <em>maison</em> l'adresse IP va tomber dans les eaux de 192.168.1.1 - 192.168.1.254. On va donner notre ordinateur le premier adresse IP alors appelle-le <code>192.168.1.1</code></p>
+						<p>Nous allons nommer le routeur <code>192.168.1.254</code> comme c'est l'adresse par d&eacute;faut de plein de routeurs pour la maison.</p>
+						<p>On va nommer le paquet <code>packet</code> parce que c'est le mot anglais pour un paquet.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<p>Voila une image de mes lutins et un vid&eacute;o explicatif si t'as besoin.</p>
+						<img src="images/named_sprites.png"></img></br>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/D6Yh61gCkHk?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id="Packets">
+					<section>
+						<h1>Packets(Les paquets)</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Comment les ordinateurs communiquent sur un r&eacute;seau</h2>
+						<small>
+						<p>Ce qui suit est un explication simplifi&eacute; comment les ordinateurs dans un r&eacute;seau passent les messages entre eux.</p>
+						<ol>
+							<li>L'ordinateur qui envoie le data a besoin de le casser en petits morceaux, qui s'appellent paquets.</li>
+							<li>Chaque paquet contient (entre autre) l'adresse IP de l'ordinateur qui envoie le data, un morceau du data et l'adresse IP de l'ordinateur destinataire.</li>
+							<li>L'ordinateur envoie le paquet au routeur.</li>
+							<li>Le routeur examine le paquet et voit l'adresse IP de l'ordinateur pour lequel il est destin&eacute;.</li>
+							<li>Le routeur envoie le paquet &agrave; son d&eacute;stination, l'autre ordinateur</li>
+							<li>L'ordinateur d&eacute;stinaire re&ccedil;oit le paquet, le mets avec les autres paquet et peux voir le data originale.</li>
+						</ol>
+						</small>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+					<p>Ce vid&eacute;o est en VO pour l'instant, mais les images sont parlant</p>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/gjSx7lhQylQ?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>	
+				</section>
+
+				<section id="Building_the_network">
+					<section>
+						<h1>Commencer &agrave; construire le r&eacute;seau</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Construire un r&eacute;seau virtuel</h2>
+						<p>On va commencer avec un script initial sur l'ordiateur.</p>
+						<p>Ce script doit faire le suivant :</p>
+						<ol>
+							<li>Quand l'ordi est cliqu&eacute;, il doit cr&eacute;r un clone du paquet.</li>
+							<li>Il doit ensuite ajouter l'adresse IP de l'ordinateur dans un liste qui s'appelle <code>packet_list</code>.</li>
+							<li>Il doit demander quel data doit etre envoyer et ajout ceci au liste.</li>
+							<li>Il doit demander vers o&ugrave; le data doit etre envoyer et ajout cela au liste.</li>
+						</ol>
+						<p>Essaie de le construire toi-m&ecirc;me, mais il y a de l'aide dessous.</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+quand ce lutin cliqu&eacute;
+cr&eacute;e clone du paquet
+ajout 192.168.1.1 &agrave; packet_list
+demande "Quel data veux-tu envoyer ?"
+ajout r&eacute;ponse au packet_list
+demande "O&ugrave; veux-tu envoyer le data ?"
+ajout r&eacute;ponse au to packet_list
+</code></pre>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Les Blocs</h2>
+						<img src="images/laptop_blocks1_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Script</h2>
+						<img src="images/laptop_script1_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Video</h2>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/TKdNZ4TnJV4?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+						</br><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Vider le liste</h2>
+						<p>Si tu clique sur l'ordinateur, ton liste va etre populer avec trois morceaux de data.</p>
+						<ol>
+							<li>L'adresse IP de l'ordinateur</li>
+							<li>Le Data &agrave; envoyer</li>
+							<li>Le destination pour ce data</li>
+						</ol>
+						<p>Le b&eacute;mol est que si on clique une deuxi&egrave;me fois sur l'ordinateur nous allons ajouter plus de data. Nous avons besoin de vider le liste chaque fois que l'ordi est cliqu&eacute;.</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<p>Ajout un bloc pour vider le liste quand l'ordinateur est cliqu&eacute;.</p>
+						<img src="images/empty_the_list_bv.png"></img>
+						<p>Clique l'ordi pour v&eacute;rifier que ton script marche correctement.</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/x2ERvUR7rZs?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+						</br><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+				
+					<section>
+						<p>Comme nous utilisons des clones du paquet, nous avons besoin de cacher le parent lutin, et quand le clone est cr&eacute;e, il a besoin d'aller o&ugrave; se trouve le curseur et se montrer.</p>
+							<iframe width="420" height="315" src="http://www.youtube.com/embed/HUMq4NbUMBQ?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id="Sending_the_packet">
+					<section>
+						<h1>Envoyer le paquet</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Paquet</h2>
+						<p>D&egrave;s maintenant, quand l'ordi est cliqu&eacute; un paquet est cr&eacute;e et un liste qui contient des adresses IP et data est rempli.</p>
+						<p>Le paquet doit maintenant aller au routeur, pour qu'il peut etre dirig&eacute; vers l'ordinateur d&eacute;stinataire sur le r&eacute;seau.</p>
+						<p>Voila ce qui doit se passer :</p>
+						<ol>
+							<li>Le clone du paquet doit attendre pour qu'il y a trois &eacute;l&eacute;ments dans le <code>packet_list</code></li>
+							<li>Quand c'est le cas, bouger vers le routeur.</li>
+						</ol>
+						<p>Va s'y, essaie.</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+quand je commence comme un clone
+aller &agrave; mouse-pointer
+montrer
+envoyer au premier plan
+r&eacute;p&eacute;ter ind&eacute;finiment
+	si longeur de packet_list = 3 alors
+		se diriger vers 192.168.1.254
+		avancer de 1 pas
+						</code></pre>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Les blocs</h2>
+						<img src="images/packet_blocks2_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Script</h2>
+						<img src="images/packet_script2_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Vid&eacute;o</h2>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/RuRhL2IU5d0?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id ="Arriving_at_router">
+					<section>
+						<h1>Arriver au routeur</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Paquet, continu&eacute;</h2>
+						<p>Si tu teste ton script maintenant tu vera que quand tu clique sur l'ordi et r&eacute;ponds aux questions, le paquet doit apparaitre et avancer vers le routeur o&ugrave; il vibre.</p>
+						<p>Maintenant nous avons besoin de dire au routeur qu le paquet est arriv&eacute; pour qu'il peut le rediriger.</p>
+						<p>Pense comment tu va achever ceci et essaie. Aide est toujours dispo plus bas.</p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+si distance de 192.168.1.2.54 < 10
+	envoyer &agrave; tous "au routeur"
+	stop ce script
+					</code></pre>
+					<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Script</h2>
+						<img src="images/packet_script3_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Le Vid&eacute;o</h2>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/nS-pd5_8jDk?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+						</br><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+
+					<section>
+						<h2>Supprimer le clones</h2>
+						<p>Pour que nous ne serons pas gav&eacute; des milliers de clones, il faut qu'on supprime les clones quand le simulation commence.</p>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/tnTQ1VrEwXU?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id="Building_the_router">
+					<section>
+						<h1>Construction du routeur</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le routeur</h2>
+						<p>Maintenant on va commencer &agrave; scripter notre routeur. Le routeur va trouver o&ugrave; le paquet doit etre envoyer et le diriger dans le bon sens.</p>
+						<ol>
+							<li>cr&eacute;e un liste qui s'appelle <code>destination_list</code></li>
+							<li>quand le routeur re&ccedil;oit le message "au routeur" :</li>
+								<li>ajouter le coordon&eacute;e x du d&eacute;stination &agrave; <code>destination_list</code></li>
+								<li>ajouter le coordon&eacute;e y du d&eacute;stination &agrave; <code>destination_list</code></li>
+							<li>envoyer &agrave; tous que le paquet peut etre envoyer</li>
+						</ol>
+
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+quand je re&ccedil;ois "au routeur"
+	ajouter position x du dernier &eacute;l&eacute;ment du packet_list &agrave; destination_list
+	ajouter position y du dernier &eacute;l&eacute;ment du packet_list &agrave; destination_list
+	envoyer &agrave; tous forward_packet
+						</code></pre>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Les Blocs</h2>
+						<img src="images/router_blocks_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le Script</h2>
+						<img src="images/router_script_bv.png"></img>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le Vid&eacute;o</h2>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/KEeBbqyIQS8?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+						</br><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+				
+					<section>
+						<h2>Vider le destination_list</h2>
+						<p>Encore, nous avons besoin de vider le <code>destination_list</code> quand le simulation est en cours.</p>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/urC1BTRQNsA?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+						</br><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+				
+					<section>
+						<h2>Jusqu'&agrave; ce point</h2>
+						<p>Nous avons maintenant un simulation qui envoye un paquet vers le routeur, et ce routeur enregistre le destination de ce paquet.</p>
+						<p>Cependant, nous avons qu'un ordinateur unique.</p>
+						<p>Nous pouvons toujours tester notre script en demandant &agrave; l'ordi d'envoyer un paquet vers lui-meme.</p>
+						<p>Fait tourner le simulation en envoyant data &agrave; 192.168.1.1</p>
+						<p>Notre destination_list doit avoir les coordonn&eacute;es x, y de l'ordinateur.</p>
+					</section>
+				</section>
+
+				<section id="Forwarding_the_packet">
+					<section>
+						<h1>Rediriger</h1>
+						<h1>le paquet</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Rediriger le paquet</h2>
+						<p>Ensuite le paquet doit avancer vers son destination</p>
+						<p>Pour faire cela, le paquet doit &eacute;couter pour l'&eacute;misson <code>forward_packet</code>.</p>
+						<p>&agrave; ce point, le paquet doit avancer vers les coordonn&eacute;es x,y dans le <code>destination_list</code></p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+quand je re&ccedil;ois forward_packet
+glisser pendant 5 secondes ver x: &eacute;l&eacute;ment 1 du destination_list, y: &eacute;l&eacute;ment 2 du destination_list
+envoyer &agrave; tous arrived
+						</code></pre>
+					<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Les blocs</h2>
+						<img src="images/packet_blocks_forward_bv.png">
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le script</h2>
+						<img src="images/packet_script_forward_bv.png">
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le Vid&eacute;o</h2>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/gY4U41u9H24?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id="Receiving_the_packet">
+					<section>
+						<h1>Reception du paquet</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Reception du paquet</h2>
+						<p>Presque l&agrave;...</p>
+						<p>Pour finir de scripter le suivant doit prendre place.</p>
+						<p>L'ordinateur doit &eacute;couter pour qu'un paquet annonce <code>arrived</code></p>
+						<p>&agrave; ce point l&agrave;, il peut dire le contenu du <code>packet_list</code></p>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Pseudocode</h2>
+						<pre><code>
+quand je re&ccedil;oit arrived
+si touch&eacute; packet
+	dire (regroupe "Received " (regroupe &eacute;l&eacute;ment 2 de packet_list (regroupe " de " &eacute;l&eacute;ment 1 de packet_list)))
+</code></pre>
+					<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Les Blocs</h2>
+						<img src="images/receiving_packet_blocks_bv.png">
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le Script</h2>
+						<img src="images/receiving_packet_script_bv.png">
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+
+					<section>
+						<h2>Le Vid&eacute;o</h2>
+						<iframe width="420" height="315" src="" frameborder="0" allowfullscreen="true"></iframe>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+				
+					<section>
+						<h2>Dupliquer les ordinateurs</h2>
+						<p>Le dernier chose &agrave; faire est de dupliquer les ordinateurs et changer les adresses IP que chacun donne au <code>packet_list</code></p>
+						<iframe width="420" height="315" src="http://www.youtube.com/embed/X_zNMo_hQ50?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+					</section>
+				</section>
+
+				<section id = "Finishing_off">
+					<section>
+						<h1>Pour finir</h1>
+						<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+					<h2>Etudier notre r&eacute;seau</h2>
+					<p>Jouer avec ton r&eacute;seau en cliquant sur diff&eacute;rents ordinateurs et donner data et &agrave; quels adresses IP l'envoyer.</p>
+					<p>Assure-toi que tu comprends comment largement notre r&eacute;seau marche</p>
+					<p>Note bien - <em>ceci est une grosse simplification, mais te donn&eacute; une id&eacute;e.</em></p>
+					<p>Si le tien ne marche pas, voila une version qui <a href="http://scratch.mit.edu/projects/11937692/">marche</a>.</p>
+					<a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+				</section>
+
+				<section>
+					<h2>Le vrai Internet</h2>
+					<p>Le vrai internet est bien s&ucirc;r beaucoup plus large.</p>
+					<p>Sur l'Internet les paquets sont passer d'un routeur &agrave; un autre jusqu'a ce qu'ils arrivent enfin dans le r&eacute;seau de l'ordinateur destinaire</p>
+					<p>Aussi, tous les paquets ne vont pas aller par la meme route. Les paquets peux meme arriver au meme ordinateur destinaire utilisant des routes qui traversent diff&eacute;rents pays.</p>
+				</section>
+				</section>
+
+				<section id="Extension">
+					<section>
+						<h1>Activit&eacute;s</h1>
+						<h1>suppl&eacute;mentaires</h1>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+
+					</section>
+					<section>
+						<p>Ci-dessous sont pr&eacute;sent&eacute;s des activit&eacute;s suppl&eacute;mentaires.</p>
+						<p>Choisi un ou plusieurs activit&eacute;(s) qui vont te exercer mais que t'es confortable avec.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>&eacute;largir le r&eacute;seau</h2>
+						<p>Change ton mod&eacute;le de r&eacute;seau pour qu'il y a un lookup DNS.</p>
+						<p>L'ordinateur qui envoye doit demander un nom auquel envoyer le data, et l'adresse IP doit etre chercher par le routeur.</p>
+						<p>Le paquet peut etre ensuit envoyer a l'adresse IP recherch&eacute;.</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Cr&eacute;er un site web</h2>
+						<p>Revisite les pages o&ugrave; on avait cr&eacute;er des pages web en HTML (dans le section <a href="#/The_World_Wide_Web">Le World Wide Web</a>).</p>
+						<p>Essaie de &eacute;largir le site en ajoutant plus de pages plus complexe.</p>
+						<p>Tu peux trouver de l'aide &agrave; apprendre HTML ici en anglais &agrave;  [w3schools](http://www.w3schools.com/html/), ou en fran&ccedil;ais &agrave; [HTML.net](http://fr.html.net/)</p>
+						<br/><a href="#" class="image navigate-down"><img width="45" height="60" src="images/arrow.png" alt="Down arrow"></a>
+					</section>
+					<section>
+						<h2>Comment marche l'Internet</h2>
+						<p>Utilise le logiciels que tu pr&eacute;f&egrave;re:</p>
+						<ul>
+							<li>Cr&eacute;e une pr&eacute;sentation, affiche ou dissertation qui explique comment l'Internet fonction. Inclu :
+								<ul>
+									<li>Qu'est-ce qu'un paquet</li>
+									<li>Qu'est-ce qu'un routeur</li>
+									<li>Comment un paquet est transmis entre ordinateurs</li>
+								</ul>
+							<li>Assure-toi que ce que tu cr&eacute;e va convenir aux gens qui connaissent peu au sujet de l'Internet</li>
+							<li>Soit certain que les infos que tu donnes ont &eacute;t&eacute; r&eacute;cuper&eacute; par tes soins.</p>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
